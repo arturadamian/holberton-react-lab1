@@ -1,18 +1,18 @@
 import React from 'react';
-import { ITodo } from 'todo-app';
+import { ATodo } from 'todo-app';
 
-interface ITodoProps {
-  todo: ITodo;
+interface ATodoProps {
+  todo: ATodo;
   remove: (id: number) => void;
 }
-const Todo = (props: ITodoProps) => (
+const Todo = (props: ATodoProps): JSX.Element => (
   <p>
     {props.todo.text}
     <span
-      onClick={() => {
+      onClick={(): void => {
         props.remove(props.todo.id);
-
-      }}>
+      }}
+    >
       <b>&nbsp;XX</b>
     </span>
   </p>

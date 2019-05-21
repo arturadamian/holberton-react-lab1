@@ -1,56 +1,59 @@
 import React, { Component } from 'react';
-import { ITodo } from './todo-app';
+import { ATodo } from './todo-app';
 import styles from './todos.module.css';
-interface ITodoState {
-    todoText: string;
+
+interface ATodoState {
+  todoText: string;
 }
-export interface ITodoProps {
-    handleAdd: (todo: ITodo) => void;
+export interface ATodoProps {
+  handleAdd: (todo: ATodo) => void;
 }
 
-class AddTodo extends Component<ITodoProps, ITodoState> {
-    constructor(props: ITodoProps) {
-        super(props);
-        this.state = {
-            todoText: ""
-        }
-
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    handleChange(event: any) {
-        this.setState({
-            todoText: event.target.value
-        });
+class AddTodo extends Component<ATodoProps, ATodoState> {
+  public constructor(props: ATodoProps) {
+    super(props);
+    this.state = {
+      todoText: ''
     };
 
-    handleSubmit() {
-        //event.preventDefault();
-        this.props.handleAdd({
-            text: this.state.todoText,
-            id: Math.random()
-        });
-        this.setState({
-            todoText: ''
-        });
-        // your code here
-    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
-    render() {
-        return (
-            <div className="row">
-                <input
-                    type="text"
-                    value={this.state.todoText}
-                    placeholder="Add todos here..."
-                    autoComplete="off"
-                    onChange={this.handleChange}
-                />
-                <button className={styles['addTodos']} onClick={this.handleSubmit}></button>
-            </div>
-        );
+  public handleChange(event: any): void {
+    this.setState({
+      todoText: event.target.value
+    });
+  }
+
+  public handleSubmit(event: any): void {
+    event.preventDefault();
+    if (this.state.todoText) {
+      this.props.handleAdd({
+        text: this.state.todoText,
+        id: Math.random()
+      });
     }
+    this.setState({
+      todoText: ''
+    });
+    // your code here
+  }
+
+  public render(): JSX.Element {
+    return (
+      <div className="row">
+        <input
+          type="text"
+          value={this.state.todoText}
+          placeholder="Add todos here..."
+          autoComplete="off"
+          onChange={this.handleChange}
+        />
+        <button className={styles['addTodos']} onClick={this.handleSubmit} />
+      </div>
+    );
+  }
 }
 
 export default AddTodo;
