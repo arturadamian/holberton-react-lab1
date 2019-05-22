@@ -10,7 +10,8 @@ interface ATodoProps {
   handleRemove: (id: number) => void;
 }
 const TodoList = (props: ATodoProps): JSX.Element => {
-  function renderList(): JSX.Element[] {
+  function renderList(): JSX.Element[] | JSX.Element {
+    // eslint-disable-next-line react/prop-types
     var { todos, handleRemove } = props;
     // check if there are todos -- provide useful message if no todos left
     if (todos.length > 0) {

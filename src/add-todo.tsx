@@ -20,14 +20,14 @@ class AddTodo extends Component<ATodoProps, ATodoState> {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  public handleChange(event: any): void {
+  public handleChange(event: React.ChangeEvent<HTMLInputElement>): void {
     this.setState({
       todoText: event.target.value
     });
   }
 
-  public handleSubmit(event: any): void {
-    event.preventDefault();
+  public handleSubmit(): void {
+    //event.preventDefault();
     if (this.state.todoText) {
       this.props.handleAdd({
         text: this.state.todoText,
@@ -42,7 +42,7 @@ class AddTodo extends Component<ATodoProps, ATodoState> {
 
   public render(): JSX.Element {
     return (
-      <div className="row">
+      <div className={styles['input-box']}>
         <input
           type="text"
           value={this.state.todoText}

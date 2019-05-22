@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Title from './title';
 import AddTodo from './add-todo';
 import TodoList from './todo-list';
+import styles from './todos.module.css';
 
 export interface ATodos {
   todos: ATodo[];
@@ -47,7 +48,7 @@ class TodoApp extends Component<{}, ATodos> {
 
   public render(): JSX.Element {
     return (
-      <div>
+      <div className={styles['container']}>
         <Title />
         <AddTodo handleAdd={this.addTodo} />
         <TodoList todos={this.state.todos} handleRemove={this.removeTodo} />
